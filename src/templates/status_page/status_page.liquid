@@ -48,6 +48,19 @@
         {% endfor %}
       </div>
 
+
+      {% if design.display_uptime_graph %}
+        <div class="row o-hidden incidents-history-graph">
+          <span class="uptime">{{ uptime }}% {% t 'uptime_graph.uptime' %}</span>
+          <div class="segments"><!-- content goes here --></div>
+          <div class="time-legends">
+            <span>60 {% t 'uptime_graph.days_ago' %}</span>
+            <span>{% t 'uptime_graph.today' %}</span>
+          </div>
+        </div>
+      {% endif %}
+
+      {% comment %} <div class="row metrics"></div> {% endcomment %}
       <div class="incidents-container">
         <!-- Current incidents -->
         {% if incidents.size > 0 %}
@@ -75,7 +88,7 @@
         <!-- /Future maintenances -->
 
         <!-- Past incidents -->
-        {% if past_incidents.size > 0 %}
+        {% comment %} {% if past_incidents.size > 0 %}
         <div class="row">
           <h4 class="text-muted">{% t 'past_incidents' %}</h4>
           <hr>
@@ -84,22 +97,9 @@
             {% include 'status_page/_incident', incident: incident %}
           {% endfor %}
         </div>
-        {% endif %}
+        {% endif %} {% endcomment %}
         <!-- /Past incidents -->
       </div>
-
-      {% if design.display_uptime_graph %}
-        <div class="row o-hidden incidents-history-graph">
-          <span class="uptime">{{ uptime }}% {% t 'uptime_graph.uptime' %}</span>
-          <div class="segments"><!-- content goes here --></div>
-          <div class="time-legends">
-            <span>60 {% t 'uptime_graph.days_ago' %}</span>
-            <span>{% t 'uptime_graph.today' %}</span>
-          </div>
-        </div>
-      {% endif %}
-
-      <div class="row metrics"></div>
 
       <a href="{{ incidents_url | url }}" class="previous-incidents pull-right">
         {% t 'incidents_archive' %}

@@ -9,7 +9,8 @@
     {% capture type %}{% t 'services_status.operational' %}{% endcapture %}
 {% endcase %}
 
-<div class="service-status status-type-{{ service.current_incident_type }} {% if service.current_incident_type != 'none' and service.children.size > 0 %}active{% endif %}">
+{% comment %} <div class="service-status status-type-{{ service.current_incident_type }} {% if service.current_incident_type != 'none' and service.children.size > 0 %}active{% endif %}"> {% endcomment %}
+<div class="service-status status-type-{{ service.current_incident_type }} {% if service.children and service.children.size > 0 > 0 %}active{% endif %}">
   <div class="service-status--info">
     {% if service.children and service.children.size > 0 %}
       <a href="#" class="service-status--toggle-children" onclick="this.parentElement.parentElement.classList.toggle('active'); return false;"></a>
